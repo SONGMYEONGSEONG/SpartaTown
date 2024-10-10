@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public PlayerInputController PlayerInput { get; private set; }
+    public InputController PlayerInput { get; private set; }
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerInput = gameObject.GetComponent<PlayerInputController>();
+        PlayerInput = gameObject.GetComponent<InputController>();
 
         PlayerInput.OnPlayerInputActionMap();
     }
