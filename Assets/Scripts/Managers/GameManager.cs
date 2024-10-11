@@ -44,12 +44,21 @@ public class GameManager : MonoBehaviour
     private GameObject curPlayer;
     public GameObject CurPlayer { get { return curPlayer; } }
 
+    public bool DeubgMode; //TitleScene을 사용 안할때 키고 하면됨
+
     private void Start()
     {
         PlayerInput = gameObject.GetComponent<InputController>();
         PlayerInput.OnPlayerInputActionMap();
 
-        Initialize();
+        if (DeubgMode)
+        {
+
+        }
+        else
+        {
+            Initialize();
+        }
     }
 
 

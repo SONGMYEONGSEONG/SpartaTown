@@ -7,12 +7,11 @@ using UnityEngine.UI;
 
 public class UI_CharaterNameDisplay : MonoBehaviour
 {
-    
     [SerializeField] private Camera mainCamera; // 월드 좌표 -> 스크린 좌표로 옮겨주기
 
     private TextMeshProUGUI textName;
     private RectTransform rectTr;
-    private Transform target;
+    [SerializeField] private Transform target; //빌드시에는 직렬화 해제
 
     private CharacterType curCharacterType;
 
