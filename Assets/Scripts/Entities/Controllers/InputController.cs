@@ -10,6 +10,8 @@ public class InputController : Controller
     private InputActionAsset inputActions;
     private InputActionMap playerActionMap;
 
+    [SerializeField] private RectTransform UI_MenuBarOpen;
+
     protected  void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -20,6 +22,10 @@ public class InputController : Controller
         InputAction movementAction = playerActionMap.FindAction("Move");
         movementAction.performed += OnMovementPerformed;
         movementAction.canceled += OnMovementCancled;
+
+        InputAction MenuBarOpen = playerActionMap.FindAction("MenuBarOpen");
+        MenuBarOpen.performed += OnMenuBarOpenPerformed;
+
     }
 
     public void OnPlayerInputActionMap()
@@ -41,5 +47,10 @@ public class InputController : Controller
     {
         Vector2 direction = Vector2.zero;
         CallMoveEvent(direction);
+    }
+
+    private void OnMenuBarOpenPerformed(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.UI_MenuBar = !GameManager.Instance.UI_MenuBar;
     }
 }

@@ -2,6 +2,7 @@
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,29 +43,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UI_CharaterNameDisplay CharacterNameDisplayTarget;
     public InputController PlayerInput { get; private set; }
     private GameObject curPlayer;
-    public GameObject CurPlayer { get { return curPlayer; } }
+    public GameObject CurPlayer { get { return curPlayer; } set { curPlayer = value; } }
 
     public bool DeubgMode; //TitleScene을 사용 안할때 키고 하면됨
+    public bool UI_MenuBar = false;
 
     private void Start()
     {
         PlayerInput = gameObject.GetComponent<InputController>();
         PlayerInput.OnPlayerInputActionMap();
 
-        if (DeubgMode)
-        {
-
-        }
-        else
-        {
-            Initialize();
-        }
+        GameObject player = Instantiate(DataManager.Instance.InitCharacter());
+        Initialize(player);     
     }
 
 
-    public void Initialize()
+    public void Initialize(GameObject player)
     {
-        GameObject player = Instantiate(DataManager.Instance.InitCharacter());
+        if(curPlayer != null)
+        {
+            Destroy(curPlayer.gameObject);
+        }
+
         CharacterNameDisplayTarget.Target = player.transform;
         cinemachine.Follow = player.transform;
 

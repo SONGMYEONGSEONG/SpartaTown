@@ -23,6 +23,11 @@ public class Movement : MonoBehaviour
         controller.OnMoveEvent += Move;
     }
 
+    private void OnDestroy()
+    {
+        controller.OnMoveEvent -= Move;
+    }
+
     private void Move(Vector2 direction)
     {
         this.direction = direction;

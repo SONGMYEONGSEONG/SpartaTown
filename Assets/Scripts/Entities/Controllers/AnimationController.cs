@@ -36,4 +36,12 @@ public class AnimationController : MonoBehaviour
         if (vector.x == 0) return;
         renderer.flipX = vector.x < 0;
     }
+
+    private void OnDestroy()
+    {
+        anim = null;
+        renderer = null;
+        controller.OnMoveEvent -= Move;
+
+    }
 }
