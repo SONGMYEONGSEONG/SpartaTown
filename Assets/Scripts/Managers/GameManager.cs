@@ -1,4 +1,6 @@
 
+using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,12 +21,9 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            DontDestroyOnLoad(instance);
             return instance;
         }
     }
-
-    public InputController PlayerInput { get; private set; }
 
     private void Awake()
     {
@@ -35,15 +34,31 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(instance);
         }
     }
+
+
+    [SerializeField] private CinemachineVirtualCamera cinemachine;
+    [SerializeField] private UI_CharaterNameDisplay CharacterNameDisplayTarget;
+    public InputController PlayerInput { get; private set; }
+    private GameObject curPlayer;
+    public GameObject CurPlayer { get { return curPlayer; } }
 
     private void Start()
     {
         PlayerInput = gameObject.GetComponent<InputController>();
-
         PlayerInput.OnPlayerInputActionMap();
+
+        Initialize();
     }
 
+
+    public void Initialize()
+    {
+        GameObject player = Instantiate(DataManager.Instance.InitCharacter());
+        CharacterNameDisplayTarget.Target = player.transform;
+        cinemachine.Follow = player.transform;
+
+        curPlayer = player;
+    }
 }

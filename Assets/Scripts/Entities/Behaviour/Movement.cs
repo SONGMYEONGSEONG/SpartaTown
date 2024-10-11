@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private float speed = 5.0f;
+    
     Rigidbody2D rigid;
     Controller controller;
 
@@ -34,6 +36,6 @@ public class Movement : MonoBehaviour
     private void ApplyMovement(Vector2 direction)
     {
         //5 = 매직넘버 , 수정해야됨
-        rigid.velocity = direction * 5f;
+        rigid.velocity = direction * speed;
     }
 }

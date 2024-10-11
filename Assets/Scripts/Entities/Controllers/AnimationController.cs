@@ -12,6 +12,7 @@ public class AnimationController : MonoBehaviour
     private void Awake()
     {
         controller = GameManager.Instance.GetComponent<Controller>();
+
         anim = GetComponentInChildren<Animator>();
         renderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -23,7 +24,14 @@ public class AnimationController : MonoBehaviour
 
     private void Move(Vector2 vector)
     {
-        anim.SetBool(isWalking, true);
+        if (vector == Vector2.zero)
+        {
+            anim.SetBool(isWalking, false);
+        }
+        else
+        {
+            anim.SetBool(isWalking, true);
+        }
 
         if (vector.x == 0) return;
         renderer.flipX = vector.x < 0;
