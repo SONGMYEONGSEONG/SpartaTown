@@ -5,27 +5,30 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
-    
+    private float speed = 5.0f;
     Rigidbody2D rigid;
-    Controller controller;
+    InputController inputController;
+    PlayerController playerController;
 
     private Vector2 direction = Vector2.zero;
 
     private void Awake()
     {
-        controller = GameManager.Instance.GetComponent<Controller>();
+        playerController = GetComponent<PlayerController>();
+        inputController = GameManager.Instance.GetComponent<InputController>();
         rigid = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        controller.OnMoveEvent += Move;
+        speed = playerController.characterSO.speed;
+
+        inputController.OnMoveEvent += Move;
     }
 
     private void OnDestroy()
     {
-        controller.OnMoveEvent -= Move;
+        inputController.OnMoveEvent -= Move;
     }
 
     private void Move(Vector2 direction)

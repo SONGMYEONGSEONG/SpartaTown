@@ -41,7 +41,6 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> playableCharacters;
     
-    //나중에 데이터 패키지 할것
     public string UserName { get; set; }
     public CharacterType SelectType { get; set; }
 

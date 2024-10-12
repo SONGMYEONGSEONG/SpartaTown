@@ -1,4 +1,5 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //참여한 NPC들 목록을 보관하는 리스트 
+    [SerializeField] public List<CharacterController> Paricipants = new List<CharacterController>();//참석한 객체들의 컨트롤러를 List로 관리
 
     [SerializeField] private CinemachineVirtualCamera cinemachine;
     [SerializeField] private UI_CharaterNameDisplay CharacterNameDisplayTarget;
@@ -45,9 +48,7 @@ public class GameManager : MonoBehaviour
     private GameObject curPlayer;
     public GameObject CurPlayer { get { return curPlayer; } set { curPlayer = value; } }
 
-    public bool DeubgMode; //TitleScene을 사용 안할때 키고 하면됨
     public bool UI_MenuBar = false;
-
     private void Start()
     {
         PlayerInput = gameObject.GetComponent<InputController>();
@@ -67,6 +68,12 @@ public class GameManager : MonoBehaviour
 
         CharacterNameDisplayTarget.Target = player.transform;
         cinemachine.Follow = player.transform;
+
+        //Test: 참여한 NPC들 이름 출력 
+        foreach(CharacterController controller in Paricipants)
+        {
+            Debug.Log(controller.characterSO.name);
+        }
 
         curPlayer = player;
     }

@@ -42,6 +42,5 @@ public class AnimationController : MonoBehaviour
         anim = null;
         renderer = null;
         controller.OnMoveEvent -= Move;
-
     }
 }

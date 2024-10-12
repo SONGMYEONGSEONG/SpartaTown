@@ -10,8 +10,6 @@ public class InputController : Controller
     private InputActionAsset inputActions;
     private InputActionMap playerActionMap;
 
-    [SerializeField] private RectTransform UI_MenuBarOpen;
-
     protected  void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -25,6 +23,9 @@ public class InputController : Controller
 
         InputAction MenuBarOpen = playerActionMap.FindAction("MenuBarOpen");
         MenuBarOpen.performed += OnMenuBarOpenPerformed;
+
+        InputAction InterAction = playerActionMap.FindAction("InterAction");
+        InterAction.performed += OnInterActionPerformed;
 
     }
 
@@ -52,5 +53,10 @@ public class InputController : Controller
     private void OnMenuBarOpenPerformed(InputAction.CallbackContext context)
     {
         GameManager.Instance.UI_MenuBar = !GameManager.Instance.UI_MenuBar;
+    }
+
+    private void OnInterActionPerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("상호작용 키 눌림");
     }
 }
