@@ -57,6 +57,11 @@ public class InputController : Controller
 
     private void OnInterActionPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("상호작용 키 눌림");
+
+        if (GameManager.Instance.CurPlayer.GetComponent<InterAction>().IsInteractable)
+        {
+            Debug.Log("상호작용 키 눌림");
+        }
+      
     }
 }
