@@ -11,7 +11,7 @@ public class UI_CharaterNameDisplay : MonoBehaviour
 
     private TextMeshProUGUI textName;
     private RectTransform rectTr;
-    [SerializeField] private Transform target; //빌드시에는 직렬화 해제
+    private Transform target; //빌드시에는 직렬화 해제
 
     private CharacterType curCharacterType;
 
@@ -38,7 +38,8 @@ public class UI_CharaterNameDisplay : MonoBehaviour
     {
         Vector2 pos = new Vector2(target.position.x, target.position.y);
 
-        if (curCharacterType == CharacterType.Hero_male) pos.y += 0.5f;
+        pos.y += 1.5f;
+        //if (curCharacterType == CharacterType.Hero_male) pos.y += 0.5f;
 
        //Vector3 screentTargetPos = mainCamera.WorldToScreenPoint(target.position);
        Vector3 screentTargetPos = mainCamera.WorldToScreenPoint(pos);

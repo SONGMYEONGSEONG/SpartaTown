@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class UI_StartGameButton : MonoBehaviour
 {
@@ -13,8 +14,13 @@ public class UI_StartGameButton : MonoBehaviour
 
     public void StartGame()
     {
-        DataManager.Instance.UserName = ui_CharacterCreate.InputName.text.ToString();
+        int nameSize = ui_CharacterCreate.InputName.text.Count();
 
-        SceneManager.LoadScene("MainScene");
+        if (nameSize > 2 && nameSize <= 11)
+        {
+            DataManager.Instance.UserName = ui_CharacterCreate.InputName.text.ToString();
+            SceneManager.LoadScene("MainScene");
+        }
+
     }
 }
