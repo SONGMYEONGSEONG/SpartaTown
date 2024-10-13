@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2533794494286516978}
   - component: {fileID: 4502818833118134164}
   - component: {fileID: 5111760160861035174}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4776631681615885864}
   - component: {fileID: 2871475829206567069}
   - component: {fileID: 493898865279185720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hero_male
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8352941363262659456}
   - component: {fileID: 2639643226899747003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InterActionColi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

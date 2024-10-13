@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6571501545360566381}
   - component: {fileID: 6261716395257880560}
   - component: {fileID: 7881809588162215604}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Samurai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2ebbf8c477f9a4fb3b520834538d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSO: {fileID: 11400000, guid: ab0b2fb5bd5ba984382e563b261d5ff8, type: 2}
+  characterSO: {fileID: 11400000, guid: 1b1707b03fd71734398b3f8a7aa719b1, type: 2}
 --- !u!1 &7185907948918608546
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 9202540494735007957}
   - component: {fileID: 795832298956011651}
   - component: {fileID: 4036636201618020768}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

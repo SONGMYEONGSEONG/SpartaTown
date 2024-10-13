@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 
 public class InputController : Controller
 {
+    public event Action OnEventInterActionStart;
+    public event Action OnEventInterActionEnd;
+
     private PlayerInput playerInput;
     private InputActionAsset inputActions;
     private InputActionMap playerActionMap;
 
-    protected  void Awake()
+    protected void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         inputActions = playerInput.actions;
@@ -57,11 +60,24 @@ public class InputController : Controller
 
     private void OnInterActionPerformed(InputAction.CallbackContext context)
     {
+        InterAction curPlayerInterAction = GameManager.Instance.CurPlayer.GetComponent<InterAction>();
 
-        if (GameManager.Instance.CurPlayer.GetComponent<InterAction>().IsInteractable)
+        if (curPlayerInterAction.IsInteractable && !curPlayerInterAction.IsInterActing)
         {
-            Debug.Log("상호작용 키 눌림");
+            Debug.Log("상호작용 키 눌림 - 대화 창 열림");
+
+            if (curPlayerInterAction.TargetInterAction != null)
+            {
+                curPlayerInterAction.IsInterActing = true;
+                OnEventInterActionStart?.Invoke();
+            }
         }
-      
+        else if (curPlayerInterAction.IsInteractable && curPlayerInterAction.IsInterActing)
+        {
+            Debug.Log("상호작용 키 눌림 - 대화 창 끄기");
+            OnEventInterActionEnd?.Invoke();
+            curPlayerInterAction.IsInterActing = false;
+        }
+
     }
 }
