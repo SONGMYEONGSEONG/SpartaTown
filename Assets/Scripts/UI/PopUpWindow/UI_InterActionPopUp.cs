@@ -13,4 +13,5 @@ public class UI_InterActionPopUp : MonoBehaviour
     [SerializeField] public GameObject interActionPopUp;
     public string TargetText { set { targetName.text = value; } }
 
+
 }

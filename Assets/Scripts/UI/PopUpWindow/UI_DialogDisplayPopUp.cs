@@ -13,12 +13,11 @@ public class UI_DialogDisplayPopUp : MonoBehaviour
     public void OnDialogDisplay()
     {
         DialogDisplayPopUp.SetActive(true);
-
-       
     }
+
     private void Update()
     {
-        if (DialogDisplayPopUp.gameObject.activeSelf)
+        if (GameManager.Instance.CurPlayer.GetComponent<InterAction>().IsInterActing)
         {
             CharacterController target = GameManager.Instance.CurPlayer.GetComponent<InterAction>().TargetInterAction;
 
@@ -31,7 +30,12 @@ public class UI_DialogDisplayPopUp : MonoBehaviour
                 talkerDialog.text = str;
             }
         }
+        else
+        {
+            OffDialogDisplay();
+        }
     }
+
     public void OffDialogDisplay()
     {
         DialogDisplayPopUp.SetActive(false);

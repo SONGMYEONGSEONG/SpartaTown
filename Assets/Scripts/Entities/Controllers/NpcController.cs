@@ -29,10 +29,10 @@ public class NpcController : CharacterController
     {
         ui_dialogDisplayPopUp.OffDialogDisplay();
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.Instance.PlayerInput.OnEventInterActionStart -= TalkStart;
-        GameManager.Instance.PlayerInput.OnEventInterActionEnd += TalkEnd;
+        GameManager.Instance.PlayerInput.OnEventInterActionEnd -= TalkEnd;
     }
 
 

@@ -9,6 +9,8 @@ public class InterAction : MonoBehaviour
     public bool IsInteractable { get; set; }
     public bool IsInterActing { get; set; }
 
+    [SerializeField] private LayerMask targetLayerMask;
+
     private CharacterController targetInterAction;
     public CharacterController TargetInterAction
     {
@@ -17,7 +19,7 @@ public class InterAction : MonoBehaviour
 
     private void Awake()
     {
-        if(ui_InterActionPopUp == null)
+        if (ui_InterActionPopUp == null)
         {
             ui_InterActionPopUp = FindObjectOfType<UI_InterActionPopUp>();
         }
@@ -45,13 +47,13 @@ public class InterAction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsLayerMatched(gameObject.layer, collision.gameObject.layer))
+        if (IsLayerMatched(targetLayerMask, collision.gameObject.layer))
         {
             IsInteractable = true;
             ui_InterActionPopUp.interActionPopUp.gameObject.SetActive(true);
             targetInterAction = collision.GetComponent<CharacterController>();
 
-            if (targetInterAction == null)
+            if (targetInterAction != null)
             {
                 ui_InterActionPopUp.TargetText = targetInterAction.characterSO.name;
             }
@@ -62,7 +64,7 @@ public class InterAction : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (IsLayerMatched(gameObject.layer, collision.gameObject.layer))
+        if (IsLayerMatched(targetLayerMask, collision.gameObject.layer))
         {
             IsInteractable = false;
             IsInterActing = false;
@@ -80,6 +82,6 @@ public class InterAction : MonoBehaviour
 
     private bool IsLayerMatched(int value, int layer)
     {
-        return value == (value & (1 << layer));
+        return value == (value | 1 << layer);
     }
 }
