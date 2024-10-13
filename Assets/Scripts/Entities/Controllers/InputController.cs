@@ -24,6 +24,9 @@ public class InputController : Controller
         movementAction.performed += OnMovementPerformed;
         movementAction.canceled += OnMovementCancled;
 
+        InputAction lookAtMouse = playerActionMap.FindAction("LookAim");
+        lookAtMouse.performed += OnLookAtMousePerformed;
+
         InputAction MenuBarOpen = playerActionMap.FindAction("MenuBarOpen");
         MenuBarOpen.performed += OnMenuBarOpenPerformed;
 
@@ -31,6 +34,7 @@ public class InputController : Controller
         InterAction.performed += OnInterActionPerformed;
 
     }
+
 
     public void OnPlayerInputActionMap()
     {
@@ -51,6 +55,16 @@ public class InputController : Controller
     {
         Vector2 direction = Vector2.zero;
         CallMoveEvent(direction);
+    }
+
+    private void OnLookAtMousePerformed(InputAction.CallbackContext context)
+    {
+
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+
+        Vector2 dir = (mousePos - (Vector2)GameManager.Instance.CurPlayer.transform.position).normalized;
+
+        CallLookAimEvent(dir);
     }
 
     private void OnMenuBarOpenPerformed(InputAction.CallbackContext context)

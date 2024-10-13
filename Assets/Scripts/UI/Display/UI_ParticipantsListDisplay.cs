@@ -11,6 +11,7 @@ public class UI_ParticipantsListDisplay : MonoBehaviour
     [SerializeField] private GameObject participantsListParents;
 
     private List<GameObject> participantsList;
+    string userName;
 
     //코루틴을 이용하여 참여자 리스트를 계속 체크하고
     //출력하게 되는건 
@@ -30,16 +31,14 @@ public class UI_ParticipantsListDisplay : MonoBehaviour
             participantsList.Add(obj);
         }
 
+    }
 
-        //if (participantsListUpdateCoroutine == null)
-        //{
-        //    participantsListUpdateCoroutine = StartCoroutine(ListUpdateCoroutine());
-        //}
-        //else
-        //{
-        //    StopCoroutine(participantsListUpdateCoroutine);
-        //    participantsListUpdateCoroutine = StartCoroutine(ListUpdateCoroutine());
-        //}
+    private void Update()
+    {
+        if(userName != DataManager.Instance.UserName)
+        {
+            participantsList[0].GetComponent<TextMeshProUGUI>().text = DataManager.Instance.UserName;
+        }
     }
 
     private void OnDisable()

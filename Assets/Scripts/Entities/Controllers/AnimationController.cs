@@ -33,8 +33,8 @@ public class AnimationController : MonoBehaviour
             anim.SetBool(isWalking, true);
         }
 
-        if (vector.x == 0) return;
-        renderer.flipX = vector.x < 0;
+        //if (vector.x == 0) return;
+        //renderer.flipX = vector.x < 0;
     }
 
     private void OnDestroy()
