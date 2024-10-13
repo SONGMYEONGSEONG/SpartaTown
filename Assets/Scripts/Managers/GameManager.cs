@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     private GameObject curPlayer;
     public GameObject CurPlayer { get { return curPlayer; } set { curPlayer = value; } }
 
+    public int DialogIndex { get; set; }
     public bool UI_MenuBar = false;
     private void Start()
     {

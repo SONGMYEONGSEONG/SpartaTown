@@ -12,6 +12,7 @@ public class UI_DialogDisplayPopUp : MonoBehaviour
 
     public void OnDialogDisplay()
     {
+        GameManager.Instance.DialogIndex = 0;
         DialogDisplayPopUp.SetActive(true);
     }
 
@@ -25,9 +26,9 @@ public class UI_DialogDisplayPopUp : MonoBehaviour
 
             talkerName.text = target.characterSO.name;
 
-            foreach (string str in talker.DialogList)
+            if (GameManager.Instance.DialogIndex < talker.DialogList.Count)
             {
-                talkerDialog.text = str;
+                talkerDialog.text = talker.DialogList[GameManager.Instance.DialogIndex];
             }
         }
         else

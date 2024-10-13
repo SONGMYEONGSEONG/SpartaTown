@@ -88,9 +88,19 @@ public class InputController : Controller
         }
         else if (curPlayerInterAction.IsInteractable && curPlayerInterAction.IsInterActing)
         {
-            Debug.Log("상호작용 키 눌림 - 대화 창 끄기");
-            OnEventInterActionEnd?.Invoke();
-            curPlayerInterAction.IsInterActing = false;
+            NpcCharacterSO npcCharacterSO = curPlayerInterAction.TargetInterAction.characterSO as NpcCharacterSO;
+
+            if (GameManager.Instance.DialogIndex < npcCharacterSO.DialogList.Count - 1)
+            {
+                Debug.Log("상호작용 키 눌림 - 다음 대화 진행");
+                GameManager.Instance.DialogIndex++;
+            }
+            else
+            {
+                Debug.Log("상호작용 키 눌림 - 대화 창 끄기");
+                OnEventInterActionEnd?.Invoke();
+                curPlayerInterAction.IsInterActing = false;
+            }
         }
 
     }
