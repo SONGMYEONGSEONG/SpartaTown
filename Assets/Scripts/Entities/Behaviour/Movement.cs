@@ -43,7 +43,6 @@ public class Movement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        //5 = 매직넘버 , 수정해야됨
         rigid.velocity = direction * speed;
     }
 }
